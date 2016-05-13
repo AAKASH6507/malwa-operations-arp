@@ -1,0 +1,19 @@
+<?php
+$db=new mysqli('localhost','root','','cekncombo');
+if(isset($_POST['kirim']))
+{
+
+}
+else
+{
+	$queri = $db->query("SELECT * FROM info");
+	$hasil = $queri->fetch_ALL(MYSQLI_ASSOC);
+
+	
+	foreach($hasil as $row)
+	{
+	echo "<b>Hobi</b>:". $row['cekbox'] . "<b>dan Agama</b>" .$row['combox']."<br>";
+	}
+	
+}
+?>

@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body>
+<?php
+$conn = new mysqli("localhost","root","");
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+mysqli_select_db("dbnpatient",$conn);
+$sql = "SELECT * FROM tblnpatient";
+$mydata = mysqli_query($conn,$sql);
+echo "<table border=1>
+<tr>
+<th>number</th>
+<th>name</th>
+<th>address</th>
+<th>complaints</th>
+</tr>";
+while($record = mysqli_fetch_array($mydata))
+{
+echo "<tr>";
+echo "<td>" .$record['pnum'] ."<'/td>";
+echo "<td>" .$record['pname'] ."<'/td>";
+echo "<td>" .$record['addr'] ."<'/td>";
+echo "<td>" .$record['complaints'] ."<'/td>";
+echo "</tr>";
+}
+echo "</table>";
+mysqli_close($conn);
+?>
+</body>
+</html>
