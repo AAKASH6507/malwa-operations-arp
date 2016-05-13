@@ -1,0 +1,23 @@
+<select name="pname" class="textfields" id="model" style="width:180px;" onchange="getVal1();">
+    <option id="0" >--Select Patient Name--</option>
+
+    <?php
+
+    $con = mysqli_connect("localhost","root","","dbnpatient");
+    if (mysqli_connect_errno()){
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $pnum = $_GET['pnum'];
+    $query = mysqli_query($con, "SELECT * FROM tblnpatient");
+    while($row = mysqli_fetch_array($query)){
+        $pnum = $row['pnum'];
+        $pname = $row['pname'];
+        $addr = $row['addr'];
+        $complaints = $row['complaints'];
+
+    ?>
+
+    <option id="<?php echo $pnum; ?>" data-pnum="<?php echo $pnum; ?>" data-addr="<?php echo $addr; ?>" data-complaints="<?php echo $complaints; ?>" value="<?php echo $pname; ?>"><?php echo     $pname; ?></option>
+
+    <?php } ?>
